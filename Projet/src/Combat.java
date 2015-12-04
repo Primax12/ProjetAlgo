@@ -20,6 +20,7 @@ public class Combat {
 	
 	public static void menuPrincipal(){
 		System.out.println("\n=== Menu Principal ===");
+		System.out.println("\n=== Menu Principal ===");
 	}
 	
 	
