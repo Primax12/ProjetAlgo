@@ -1,4 +1,6 @@
-
+/**
+ * @author Hardi Alexandre + NUEZ SORIANO, Diego
+ */
 public class Utilitaires {
 	
 	public static int unEntierAuHasardEntre (int valeurMinimale, int valeurMaximale){
