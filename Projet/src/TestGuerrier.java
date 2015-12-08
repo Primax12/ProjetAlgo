@@ -6,6 +6,8 @@ public class TestGuerrier {
 		
 		//Et ici aussi pour finir
 		
+		//Essais de push sans fetcher alors qu'il y a des changements depuis
+		
 		System.out.println("===== TEST DE LA CLASSE GUERRIER ==== \n");
 		
 		System.out.println("Création de 3 combatants et affichage de leurs caractéristiques.\n");
