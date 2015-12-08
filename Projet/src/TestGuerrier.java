@@ -4,6 +4,8 @@
 public class TestGuerrier {
 	public static void main (String[] args){
 		
+		//Et ici aussi pour finir
+		
 		System.out.println("===== TEST DE LA CLASSE GUERRIER ==== \n");
 		
 		System.out.println("Création de 3 combatants et affichage de leurs caractéristiques.\n");

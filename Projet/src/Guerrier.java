@@ -3,6 +3,8 @@
  */
 public class Guerrier {
 	
+	//Un peu par ici aussi
+	
 	private String nom  ;
 	private int nbrePV  ;
 	private int pvMax	;
