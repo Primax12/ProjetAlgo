@@ -11,7 +11,7 @@ public class Guerrier {
 	private boolean dernierCoup ;
 	private static final String[] LISTE_PRIVILEGE= {"Une chance sur 8 de faire un coup critique",
 													"Les coups portés feront plus de dégats.", 
-													"Possède un bouclier qui encaisse 75% des dégats",
+													"Possède un bouclier qui encaisse 25% des dégats",
 													"Résiste à la dernière attaque",
 													"Soin +1PV par tour.",
 													"Empoisonne son adversaire (-1PV par tour)"} ;
@@ -55,8 +55,8 @@ public class Guerrier {
 	 * @return int correspondant à la force de frappe. (détermine le dé à jeter).
 	 */
 	public int donnerForceDeFrappe(){
-		double forceFrappe = ((double)this.nbrePV/this.pvMax)*100 ;
-		return (int)forceFrappe/33 + 1 ;
+		int forceFrappe = (this.nbrePV/this.pvMax)*100 ;
+		return (forceFrappe-1)/25 + 1 ;
 	}
 	
 	public boolean possede(int privRecherche){
