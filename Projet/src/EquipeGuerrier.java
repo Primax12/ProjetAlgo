@@ -6,7 +6,6 @@ public class EquipeGuerrier {
 	private Guerrier[] equipe;
 	private int nbreGuerrier;
 	private int nbreMaxGuerrier ;
-	//Changements ici et la pouf pouf pouf
 	
 	public EquipeGuerrier(String nom, int nbreMaxGuerrier){
 		if (nom.equals("")) throw new IllegalArgumentException("Le nom ne peut pas être une chaîne de caractère vide.");

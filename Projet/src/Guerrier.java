@@ -3,10 +3,6 @@
  */
 public class Guerrier {
 	
-	//Un peu par ici aussi
-	//Test de fetch
-	//Encore
-	
 	private String nom  ;
 	private int nbrePV  ;
 	private int pvMax	;
