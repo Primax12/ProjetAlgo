@@ -3,8 +3,6 @@
  */
 public class Guerrier {
 	
-	//Test local
-	
 	private String nom  ;
 	private int nbrePV  ;
 	private int pvMax	;
