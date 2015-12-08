@@ -6,7 +6,7 @@ public class TestGuerrier {
 		
 		//Et ici aussi pour finir
 		
-		//Essais de push sans fetcher alors qu'il y a des changements depuis
+		//Push apres pull
 		
 		System.out.println("===== TEST DE LA CLASSE GUERRIER ==== \n");
 		
