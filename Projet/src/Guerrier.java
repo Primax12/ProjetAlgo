@@ -5,20 +5,24 @@ public class Guerrier {
 	
 	private String nom  ;
 	private int nbrePV  ;
+	private int pvMax	;
 	private boolean[] privilege ;
 	private boolean poison ;
 	private boolean dernierCoup ;
-	private static final String[] LISTE_PRIVILEGE= {"Attaque toujours en premier",
-													"Les coups port�s feront plus de d�g�ts.", 
-													"Poss�de un bouclier qui encaisse 75% des d�g�ts",
-													"R�siste � la derni�re attaque",
+	private static final String[] LISTE_PRIVILEGE= {"Une chance sur 8 de faire un coup critique",
+													"Les coups portés feront plus de dégats.", 
+													"Possède un bouclier qui encaisse 75% des dégats",
+													"Résiste à la dernière attaque",
 													"Soin +1PV par tour.",
-													"Empoisonne sont adversaire (-1PV par tour)"} ;
+													"Empoisonne son adversaire (-1PV par tour)"} ;
 	
-	public Guerrier(String nom , int nbrePV, int attaque){
+	public Guerrier(String nom , int nbrePV){
+		if (nom.equals("")) throw new IllegalArgumentException("Le nom ne peut pas être une chaîne de caractère vide.");
+		if (nbrePV <= 0) throw new IllegalArgumentException("Le nombre de PV doit être strictement suppérieur à 0");
 		this.nom = nom ;
 		this.nbrePV = nbrePV ;
-		this.privilege = new boolean[5];
+		this.pvMax  = nbrePV ; 
+		this.privilege = new boolean[LISTE_PRIVILEGE.length];
 	}
 
 	public int getNbrePV() {
@@ -26,7 +30,7 @@ public class Guerrier {
 	}
 
 	public void setNbrePV(int nbrePV) {
-		if (nbrePV <= 0) throw new IllegalArgumentException("Un guerrier ne peut pas avoir un nombre de point de vie n�gatif.");
+		if (nbrePV <= 0) throw new IllegalArgumentException("Un guerrier ne peut pas avoir un nombre de point de vie négatif.");
 		this.nbrePV = nbrePV;
 	}
 
@@ -46,16 +50,25 @@ public class Guerrier {
 		return nom;
 	}
 	
+	/**
+	 * Donne la force de frappe d'un combattant sur une échelle de 4(max) à 1(min).
+	 * @return int correspondant à la force de frappe. (détermine le dé à jeter).
+	 */
 	public int donnerForceDeFrappe(){
-		return nbrePV/25 ;
+		double forceFrappe = ((double)this.nbrePV/this.pvMax)*100 ;
+		return (int)forceFrappe/33 + 1 ;
 	}
 	
 	public boolean possede(int privRecherche){
+		if (privRecherche >= privilege.length || privRecherche < 0)
+			throw new IllegalArgumentException("Ce privilège n'existe pas");
 		return privilege[privRecherche] ;
 	}
 	
 	public boolean possedeTous(int[] privilegeRecherche){
 		for (int i = 0 ; i < privilegeRecherche.length ; i++){
+			if ((privilegeRecherche[i] >= privilege.length || privilegeRecherche[i] < 0))
+				throw new IllegalArgumentException("Ce privilège n'existe pas");
 			if (!privilege[privilegeRecherche[i]])
 				return false ;
 		}
@@ -64,13 +77,28 @@ public class Guerrier {
 	
 	public boolean possedeAucun(int[] privilegeRecherche){
 		for (int i = 0 ; i < privilegeRecherche.length ; i++){
+			if (privilegeRecherche[i] >= privilege.length || privilegeRecherche[i] < 0)
+				throw new IllegalArgumentException("Ce privilège n'existe pas");
 			if (privilege[privilegeRecherche[i]])
 				return false ;
 		}
 		return true ;
 	}
 	
+	/**
+	 * @return true si le guerrier possède 0 privilèges, false sinon.
+	 */
+	public boolean possedeZeroPriv(){
+		for (int i = 0 ; i < privilege.length ; i++){
+			if (privilege[i])
+				return false ;
+		}
+		return true ;
+	}
+	
 	public boolean donnerPrivilege(int indice){
+		if (indice >= privilege.length || indice < 0)
+			throw new IllegalArgumentException("Ce privilège n'existe pas");
 		if (!this.privilege[indice]){
 			this.privilege[indice] = true ;
 			return true ;
@@ -79,6 +107,8 @@ public class Guerrier {
 	}
 	
 	public boolean retirePrivilege(int indice){
+		if (indice >= privilege.length || indice < 0)
+			throw new IllegalArgumentException("Ce privilège n'existe pas");
 		if (this.privilege[indice]){
 			this.privilege[indice] = false ;
 			return true ;
@@ -110,12 +140,16 @@ public class Guerrier {
 	public String toString(){
 		String texte = new String();
 		texte = this.nom + ":\n" +
-				"\tVie\t : "	  + this.nbrePV  + "\n" +
-				"\tPrivil�ges : " ;
+				"\tVie\t : "	+ this.nbrePV + "/" + this.pvMax + " PV\n" +
+				"\tForce\t : "	+ this.donnerForceDeFrappe() + "\n" +
+				"\tPrivilèges : " ;
 		
-		for (int i=0; i<this.privilege.length; i++){
-			if (this.privilege[i]){
-				texte = texte + "\n\t\t"+ LISTE_PRIVILEGE[i];
+		if (this.possedeZeroPriv())
+			texte += "\n\t\tAuncun" ;
+		else{ 
+			for (int i=0; i<this.privilege.length; i++){
+				if (this.privilege[i])
+					texte = texte + "\n\t\t"+ LISTE_PRIVILEGE[i];
 			}
 		}
 		return texte;
