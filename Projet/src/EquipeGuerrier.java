@@ -7,6 +7,7 @@ public class EquipeGuerrier {
 	private int nbreGuerrier;
 	private int nbreMaxGuerrier ;
 	//test
+	//Whohooo ca marche!! (Texte entr� dans Eclipse
 	
 	public EquipeGuerrier(String nom, int nbreMaxGuerrier){
 		if (nom.equals("")) throw new IllegalArgumentException("Le nom ne peut pas être une chaîne de caractère vide.");
