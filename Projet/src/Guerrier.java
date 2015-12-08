@@ -4,6 +4,7 @@
 public class Guerrier {
 	
 	//Un peu par ici aussi
+	//Test de fetch
 	
 	private String nom  ;
 	private int nbrePV  ;
