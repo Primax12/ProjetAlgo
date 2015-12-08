@@ -36,7 +36,7 @@ public class TestEquipeGuerrier {
 		//System.out.println(g1.possede(3));
 	
 	
-		System.out.println(g1.retirePrivilege(1));
+		//System.out.println(g1.retirePrivilege(1));
 		/**	
 		 System.out.println(g1);
 	

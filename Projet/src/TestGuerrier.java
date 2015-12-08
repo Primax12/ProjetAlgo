@@ -6,14 +6,14 @@ public class TestGuerrier {
 		
 		System.out.println("===== TEST DE LA CLASSE GUERRIER ==== \n");
 		
-		System.out.println("Création de 3 combatants et affichage de leurs caractéristiques.\n");
+		System.out.println("Creation de 3 combatants et affichage de leurs caracteristiques.\n");
 		Guerrier g1 = new Guerrier("PikaClou", 150);
 		Guerrier g2 = new Guerrier("FrappeFort", 180);
 		Guerrier g3 = new Guerrier("Blorky", 90);
 		
 		System.out.println(g1 + "\n" + g2 + "\n" + g3);
 		
-		System.out.println("\n\nDont de privilèges aux guerriers : \n");
+		System.out.println("\n\nDont de privileges aux guerriers : \n");
 		
 		g1.donnerPrivilege(0) ;
 		g1.donnerPrivilege(5);
@@ -26,7 +26,7 @@ public class TestGuerrier {
 		
 		System.out.println(g1 + "\n" + g2 + "\n" + g3);
 		
-		System.out.println("\n\nRetrait de privilèges aux guerriers : \n");
+		System.out.println("\n\nRetrait de privileges aux guerriers : \n");
 		
 		g1.retirePrivilege(3) ;
 		
@@ -36,23 +36,23 @@ public class TestGuerrier {
 
 		System.out.println(g1 + "\n" + g2 + "\n" + g3);
 		
-		System.out.println("\n\nTest des Méthodes sur les privilèges.\n");
-		System.out.println("Tes de la méthode possede");
+		System.out.println("\n\nTest des Méthodes sur les privileges.\n");
+		System.out.println("Tes de la methode possede");
 		
-		System.out.println("Le Guerrier 1 possède le privilège 0 : "+g1.possede(0) + " Excepcted : true")  ;
-		System.out.println("Le Guerrier 1 possède le privilège 1 : "+g1.possede(1) + " Excepcted : false") ;
+		System.out.println("Le Guerrier 1 possede le privilege 0 : "+g1.possede(0) + " Excepcted : true")  ;
+		System.out.println("Le Guerrier 1 possede le privilege 1 : "+g1.possede(1) + " Excepcted : false") ;
 		
 		System.out.println("\t----------\n");
 		
-		System.out.println("\nTes de la méthode possedeTous\n");
+		System.out.println("\nTes de la methode possedeTous\n");
 		
 		int[] liste = {3,4} ;
-		System.out.println("Le Guerrier 2 possède les privilèges 3 et 4 : "+g2.possedeTous(liste) + " Excepcted : false") ;
+		System.out.println("Le Guerrier 2 possede les privileges 3 et 4 : "+g2.possedeTous(liste) + " Excepcted : false") ;
 		g2.donnerPrivilege(4);
-		System.out.println("Dont du 3è privilège au Guerrier 2...");
-		System.out.println("Le Guerrier 2 possède les privilèges 3 et 4 : "+g2.possedeTous(liste) + " Excepcted : true") ;
+		System.out.println("Dont du 3e privilege au Guerrier 2...");
+		System.out.println("Le Guerrier 2 possede les privileges 3 et 4 : "+g2.possedeTous(liste) + " Excepcted : true") ;
 		
-		System.out.println("\n\nTest de la méthode donnerForceFrappe\n");
+		System.out.println("\n\nTest de la methode donnerForceFrappe\n");
 		
 		System.out.println(g1);
 		System.out.println("\nRetrait de 2 PV à PikaClou\n");

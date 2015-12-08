@@ -45,11 +45,11 @@ public class Combat {
 		boolean[] championsChoisis = new boolean[10];
 		Guerrier[] listeGuerrier = CreationListeGuerrier() ;
 		
-		System.out.print("\nJoueur 1 : choisissez le nom de votre équipe : ");
+		System.out.print("\nJoueur 1 : choisissez le nom de votre equipe : ");
 		String nom = scanner.next();
 		EquipeGuerrier equipe1 = new EquipeGuerrier(nom);
 		
-		System.out.print("\n\nJoueur 2 : choisissez le nom de votre équipe : ");
+		System.out.print("\n\nJoueur 2 : choisissez le nom de votre equipe : ");
 		nom = scanner.next();
 		EquipeGuerrier equipe2 = new EquipeGuerrier(nom);
 		
@@ -75,9 +75,9 @@ public class Combat {
 	
 	/** ==== LISTE DES PRIVILEGES ====
 	 * 0 - Une chance sur 8 de faire un coup critique
-	 * 1 - Les coups portés feront plus de dégats. (les bornes du dé sont plus grandes
-	 * 2 - Possède un bouclier qui encaisse 25% des dégats
-	 * 3 - Résiste à la dernière attaque
+	 * 1 - Les coups portes feront plus de degats. (les bornes du de sont plus grandes
+	 * 2 - Possede un bouclier qui encaisse 25% des degats
+	 * 3 - Resiste à la derniere attaque
 	 * 4 - Soin : +1PV par tour
 	 * 5 - Empoisonne son adversaire (-1PV par tour)
 	 */
@@ -141,19 +141,19 @@ public class Combat {
 	public static void affichageRegles(){
 		System.out.println("\n\t==== REGLES DU JEU ==== \n");
 		
-		System.out.println("Créez votre équipe de 3 combattants et affrontez vos amis dans un combat à mort!");
-		System.out.println("\nAprès avoir choisi le nom de votre équipe, choisissez 3 champions à tour de rôle");
-		System.out.println("parmi les 10 qui vous sont proposés. Ensuite, le combat commence !\n");
+		System.out.println("Creez votre equipe de 3 combattants et affrontez vos amis dans un combat a� mort!");
+		System.out.println("\nApres avoir choisi le nom de votre equipe, choisissez 3 champions a� tour de role");
+		System.out.println("parmi les 10 qui vous sont proposes. Ensuite, le combat commence !\n");
 		
-		System.out.println("Chaque combattant possède un privilège au début du jeur, cependant un combattant");
-		System.out.println("peut gagner le privilège de sont adversaire en tuant celui-ci! \n");
+		System.out.println("Chaque combattant possede un privilege au debut du jeu, cependant un combattant");
+		System.out.println("peut gagner le/les privilege/s de sont adversaire en tuant celui-ci! \n");
 		
-		System.out.println("Pendant le combat, vous pouvez consulter la liste de vos champion à tout moment");
-		System.out.println("Vous pouvez également changer de champion pendant le combat, mais le changement");
+		System.out.println("Pendant le combat, vous pouvez consulter la liste de vos champion a tout moment");
+		System.out.println("Vous pouvez egalement changer de champion pendant le combat, mais le changement");
 		System.out.println("compte pour un tour. (/!\\ le changement ne soigne pas votre champion.)");
-		System.out.println("Les dégats que vos champions vont infliger sont proportionnel à leurs PV !");
+		System.out.println("Les degats que vos champions vont infliger sont proportionnel a�leurs PV !");
 
-		System.out.println("Vous perdez lorsque tous vos champions sont à 0PV! \n");
+		System.out.println("Vous perdez lorsque tous vos champions sont a� 0PV! \n");
 		
 		menuPrincipal();
 	}

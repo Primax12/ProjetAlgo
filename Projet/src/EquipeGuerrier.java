@@ -8,7 +8,7 @@ public class EquipeGuerrier {
 	private int nbreMaxGuerrier ;
 	
 	public EquipeGuerrier(String nom, int nbreMaxGuerrier){
-		if (nom.equals("")) throw new IllegalArgumentException("Le nom ne peut pas être une chaîne de caractère vide.");
+		if (nom.equals("")) throw new IllegalArgumentException("Le nom ne peut pas etre une chaine de caractere vide.");
 		this.nom = nom;
 		this.nbreGuerrier = 0;
 		this.nbreMaxGuerrier = nbreMaxGuerrier ;
@@ -20,7 +20,7 @@ public class EquipeGuerrier {
 	}
 	
 	public int donnerIndice(Guerrier guerrier){
-		if (guerrier == null) throw new IllegalArgumentException("Un guerrier ne peut pas être null");
+		if (guerrier == null) throw new IllegalArgumentException("Un guerrier ne peut pas etre null");
 		for (int i=0; i<this.nbreGuerrier; i++){
 			if (this.equipe[i].equals(guerrier)) 
 				return i;
