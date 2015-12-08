@@ -3,6 +3,8 @@
  */
 public class Guerrier {
 	
+	//Test dans le git
+	
 	private String nom  ;
 	private int nbrePV  ;
 	private int pvMax	;
