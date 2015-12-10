@@ -7,6 +7,7 @@ public class EquipeGuerrier {
 	private int nbreGuerrier;
 	private int nbreMaxGuerrier ;
 	
+	
 	public EquipeGuerrier(String nom, int nbreMaxGuerrier){
 		if (nom.equals("")) throw new IllegalArgumentException("Le nom ne peut pas etre une chaine de caractere vide.");
 		this.nom = nom;
@@ -30,6 +31,10 @@ public class EquipeGuerrier {
 	
 	public String getNom(){
 		return this.nom ;
+	}
+	
+	public int getNbreGuerrier(){
+		return nbreGuerrier;
 	}
 	
 	public int nombreGuerriersEnJeu(){
@@ -116,6 +121,16 @@ public class EquipeGuerrier {
 		}
 		liste[indicePivot] = pivot ;
 		return indicePivot ;
+	}
+	
+	public Guerrier selectionner(int indice){
+		if (indice<0 || indice>nbreGuerrier - 1) throw new IllegalArgumentException("Ce combatant n'existe pas ou est mort") ;
+		
+		return equipe[indice];
+	}
+	
+	public Guerrier[] getListeGuerriers(){
+		return this.equipe;
 	}
 
 	public String toString() {

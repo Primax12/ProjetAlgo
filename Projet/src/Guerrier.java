@@ -11,14 +11,14 @@ public class Guerrier {
 	private boolean dernierCoup ;
 	private static final String[] LISTE_PRIVILEGE= {"Une chance sur 8 de faire un coup critique",
 													"Les coups portes feront plus de degats.", 
-													"Poss√®de un bouclier qui encaisse 25% des degats",
+													"Possede un bouclier qui encaisse 25% des degats",
 													"Resiste a† la derniere attaque",
 													"Soin +1PV par tour.",
 													"Empoisonne son adversaire (-1PV par tour)"} ;
 	
 	public Guerrier(String nom , int nbrePV){
 		if (nom.equals("")) throw new IllegalArgumentException("Le nom ne peut pas etre une chaine de caractere vide.");
-		if (nbrePV <= 0) throw new IllegalArgumentException("Le nombre de PV doit √™tre strictement supperieur a† 0");
+		if (nbrePV <= 0) throw new IllegalArgumentException("Le nombre de PV doit etre strictement supperieur a† 0");
 		this.nom = nom ;
 		this.nbrePV = nbrePV ;
 		this.pvMax  = nbrePV ; 

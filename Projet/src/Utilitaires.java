@@ -17,9 +17,13 @@ public class Utilitaires {
 
 	
 	public static int choixEntierEntre(int borneMin, int borneMax){
+		return choixEntierEntre(borneMin, borneMax, "");
+	}
+	
+	public static int choixEntierEntre(int borneMin, int borneMax, String txt){
 		int choix = scanner.nextInt();
 		while (choix < borneMin || choix > borneMax){
-			System.out.print("Votre choix doit se situer entre " + borneMin + " et " + borneMax + " : ");
+			System.out.print(txt + "Votre choix doit se situer entre " + borneMin + " et " + borneMax + " : ");
 			choix = scanner.nextInt();
 		} 
 		return choix ;

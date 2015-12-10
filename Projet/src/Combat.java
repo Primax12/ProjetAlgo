@@ -3,7 +3,9 @@
  */
 public class Combat {
 	
-	public static java.util.Scanner scanner = new java.util.Scanner(System.in); 
+	public static java.util.Scanner scanner = new java.util.Scanner(System.in);
+	public static EquipeGuerrier[] listeEquipe = new EquipeGuerrier[2]; 
+	
 	
 	public static void main(String args[]){
 		
@@ -30,6 +32,7 @@ public class Combat {
 		switch (choix) {
 		case 1:
 			CreationEquipe();
+			combatGuerrier();
 			break ;
 		case 2:
 			affichageRegles();
@@ -39,7 +42,6 @@ public class Combat {
 			break;
 		}
 	}
-	
 
 	public static void CreationEquipe(){
 		boolean[] championsChoisis = new boolean[10];
@@ -55,14 +57,14 @@ public class Combat {
 		
 		int choix ;
 		for (int i = 0 ; i < 3 ; i++){
-			afficherListeGuerrier(listeGuerrier, championsChoisis);
+			afficherListeGuerrier(listeGuerrier);
 			
 			choix = choixGuerrier(championsChoisis, equipe1) ;
 			
 			equipe1.ajouterGuerrier(listeGuerrier[choix]);
 			championsChoisis[choix] = true ;
 			
-			afficherListeGuerrier(listeGuerrier, championsChoisis);
+			afficherListeGuerrier(listeGuerrier);
 			
 			choix = choixGuerrier(championsChoisis, equipe2) ;
 			
@@ -70,6 +72,10 @@ public class Combat {
 			championsChoisis[choix] = true ;
 		}	
 		System.out.println("\n" + equipe1 + "\n\n\n" + equipe2);
+		
+		listeEquipe[0] = equipe1;
+		listeEquipe[1] = equipe2;
+		
 		System.out.println("\nQue le combat commence !");
 	}
 	
@@ -171,11 +177,63 @@ public class Combat {
 		return choix ;
 	}
 	
-	public static void afficherListeGuerrier(Guerrier[] listeGuerrier, boolean[] championsChoisis){
+	public static void afficherListeGuerrier(Guerrier[] listeGuerrier){
 		System.out.println("\n=== LISTE DES GUERRIERS ===\n");
 		for (int j = 0 ; j < listeGuerrier.length ; j++){
-			if (!(championsChoisis[j]))
-				System.out.println(j + " - " + listeGuerrier[j] + "\n");
+			System.out.println(j + " - " + listeGuerrier[j] + "\n");
+		}
+	}
+	
+	public static void combatGuerrier(){
+		Guerrier[] combattants = new Guerrier[2];
+		
+		int tour = 0;
+		
+		combattants[0] = choisirCombatant(0);
+		combattants[1] = choisirCombatant(1);
+		
+		while (!combatFini()){
+			choixAction(tour);
+		}
+		
+		
+		
+	}
+	
+	public static Guerrier choisirCombatant(int tour){
+		System.out.println("Equipe "+listeEquipe[tour].getNom()+" Choissisez votre combattant: ");
+		afficherListeGuerrier(listeEquipe[tour].getListeGuerriers());
+		
+		int choix = Utilitaires.choixEntierEntre(0, listeEquipe[tour].getNbreGuerrier()-1, "Ce combattant est mort! ");
+		
+		return listeEquipe[tour].selectionner(choix);
+	}
+	
+	public static boolean combatFini(){
+		if (listeEquipe[0].getNbreGuerrier() == 0) return true;
+		if (listeEquipe[1].getNbreGuerrier() == 0) return true;
+		return false;
+	}
+	
+	public static void choixAction(int tour){
+		System.out.println("1 - ATTAQUER");
+		System.out.println("2 - CHANGER COMBATTANT");
+		System.out.println("3 - VOIR EQUIPE");
+		
+		System.out.print("\nFaites votre choix : ");
+		int choix = Utilitaires.choixEntierEntre(1, 3);
+		
+		switch (choix) {
+		case 1:
+			afficherListeGuerrier(listeEquipe[tour].getListeGuerriers());
+			break ;
+		case 2:
+			choisirCombatant(tour);
+			break ;
+		default:
+			afficherListeGuerrier(listeEquipe[tour].getListeGuerriers());
+			choixAction(tour);
+			break;
 		}
 	}
 }
