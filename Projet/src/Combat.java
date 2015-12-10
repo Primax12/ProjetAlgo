@@ -206,7 +206,7 @@ public class Combat {
 		System.out.println("Equipe "+listeEquipe[tour].getNom()+" Choissisez votre combattant: ");
 		afficherListeGuerrier(listeEquipe[tour].getListeGuerriers());
 		
-		System.out.print("Faites votre choix : ");
+		System.out.print("Faites votre choix : 2");
 		int choix = Utilitaires.choixEntierEntre(0, listeEquipe[tour].getNbreGuerrier()-1, "Ce combattant est mort! ");
 		
 		return listeEquipe[tour].selectionner(choix);
