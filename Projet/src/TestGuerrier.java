@@ -15,7 +15,7 @@ public class TestGuerrier {
 		
 		System.out.println("\n\nDont de privileges aux guerriers : \n");
 		
-		g1.donnerPrivilege(0) ;
+		g1.donnerPrivilege(1) ;
 		g1.donnerPrivilege(5);
 		
 		g2.donnerPrivilege(3) ;
