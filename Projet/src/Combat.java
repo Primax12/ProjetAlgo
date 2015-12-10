@@ -1,6 +1,7 @@
 /**
  * @author Hardi Alexandre + NUEZ SORIANO, Diego
  */
+ //test
 public class Combat {
 	
 	public static java.util.Scanner scanner = new java.util.Scanner(System.in);
