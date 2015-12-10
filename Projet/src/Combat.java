@@ -1,3 +1,5 @@
+import javax.sound.midi.Synthesizer;
+
 /**
  * @author Hardi Alexandre + NUEZ SORIANO, Diego
  */
@@ -34,6 +36,8 @@ public class Combat {
 		case 1:
 			CreationEquipe();
 			combatGuerrier();
+			System.out.println("Fin du combat");
+			menuPrincipal();
 			break ;
 		case 2:
 			affichageRegles();
@@ -195,7 +199,10 @@ public class Combat {
 		combattants[1] = choisirCombatant(1);
 		
 		while (!combatFini()){
-			choixAction(tour);
+			System.out.println("\nTour de " + combattants[tour].getNom() + "\t" + combattants[tour].getNbrePV() + "/" + combattants[tour].getNbrePvMax() +"\n");
+			choixAction(tour, combattants);
+			System.out.println(combattants[0] + "\n" + combattants[1]);
+			tour = (tour+1)%2;
 		}
 		
 		
@@ -208,7 +215,7 @@ public class Combat {
 		
 		System.out.print("Faites votre choix : ");
 		int choix = Utilitaires.choixEntierEntre(0, listeEquipe[tour].getNbreGuerrier()-1, "Ce combattant est mort! ");
-		
+				
 		return listeEquipe[tour].selectionner(choix);
 	}
 	
@@ -218,7 +225,7 @@ public class Combat {
 		return false;
 	}
 	
-	public static void choixAction(int tour){
+	public static void choixAction(int tour, Guerrier[] combattants){
 		System.out.println("1 - ATTAQUER");
 		System.out.println("2 - CHANGER COMBATTANT");
 		System.out.println("3 - VOIR EQUIPE");
@@ -228,15 +235,32 @@ public class Combat {
 		
 		switch (choix) {
 		case 1:
-			afficherListeGuerrier(listeEquipe[tour].getListeGuerriers());
+			attaque(tour, combattants);
 			break ;
 		case 2:
-			choisirCombatant(tour);
+			combattants[tour] = choisirCombatant(tour);
 			break ;
 		default:
 			afficherListeGuerrier(listeEquipe[tour].getListeGuerriers());
-			choixAction(tour);
+			choixAction(tour, combattants);
 			break;
+		}
+	}
+	
+	public static void attaque(int tour, Guerrier[] combattants){
+		Guerrier attaquant = combattants[tour], defenseur = combattants[(tour+1)%2];
+		int force = attaquant.donnerForceDeFrappe();
+		int degats = 100;// Utilitaires.unEntierAuHasardEntre(force*2, force*4);
+		
+		System.out.println(attaquant.getNom()+" inflige "+degats+" degats à "+defenseur.getNom());
+		
+		defenseur.subirDegats(degats);
+		if (defenseur.getNbrePV() == 0){
+			listeEquipe[(tour+1)%2].mourir(defenseur);
+			System.out.println(defenseur.getNom()+" est mort!");
+			if (!combatFini()){
+				combattants[(tour+1)%2] = choisirCombatant((tour+1)%2);
+			}
 		}
 	}
 }

@@ -28,12 +28,22 @@ public class Guerrier {
 	public int getNbrePV() {
 		return nbrePV;
 	}
+	
+	public int getNbrePvMax(){
+		return this.pvMax;
+	}
 
 	public void setNbrePV(int nbrePV) {
 		if (nbrePV <= 0) throw new IllegalArgumentException("Un guerrier ne peut pas avoir un nombre de point de vie negatif.");
 		this.nbrePV = nbrePV;
 	}
-
+	
+	public void subirDegats(int degats){
+		this.nbrePV = this.nbrePV-degats;
+		if (this.nbrePV<0) this.nbrePV=0;
+		
+	}
+	
 	public boolean isPoison() {
 		return poison;
 	}
