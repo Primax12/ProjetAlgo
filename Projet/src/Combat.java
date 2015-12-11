@@ -159,7 +159,7 @@ public class Combat {
 		System.out.println("Pendant le combat, vous pouvez consulter la liste de vos champion a tout moment");
 		System.out.println("Vous pouvez egalement changer de champion pendant le combat, mais le changement");
 		System.out.println("compte pour un tour. (/!\\ le changement ne soigne pas votre champion.)");
-		System.out.println("Les degats que vos champions vont infliger sont proportionnel aÂ leurs PV !");
+		System.out.println("Les degats que vos champions vont infliger sont proportionnel a leurs PV !");
 
 		System.out.println("Vous perdez lorsque tous vos champions sont aÂ  0PV! \n");
 		
