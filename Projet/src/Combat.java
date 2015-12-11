@@ -9,7 +9,7 @@ public class Combat {
 	
 	
 	public static void main(String args[]){
-		videEcran();
+		Utilitaires.videEcran();
 		
 		System.out.println("*********************************");
 		System.out.println("**          GLADIATOR          **");
@@ -17,8 +17,8 @@ public class Combat {
 		
 		System.out.println("\nBienvenu dans Gladiator !");
 		
-		pause();
-		videEcran();
+		Utilitaires.pause();
+		Utilitaires.videEcran();
 		
 		menuPrincipal();
 		
@@ -34,7 +34,7 @@ public class Combat {
 		System.out.print("\nFaites votre choix : ");
 		int choix = Utilitaires.choixEntierEntre(1, 3);
 		
-		videEcran();
+		Utilitaires.videEcran();
 		
 		switch (choix) {
 		case 1:
@@ -92,11 +92,11 @@ public class Combat {
 		listeEquipe[0] = equipe1;
 		listeEquipe[1] = equipe2;
 		
-		videEcran();
+		Utilitaires.videEcran();
 		
 		System.out.println("\nQue le combat commence !");
-		pause();
-		videEcran();
+		Utilitaires.pause();
+		Utilitaires.videEcran();
 	}
 	
 	/** ==== LISTE DES PRIVILEGES ====
@@ -184,16 +184,6 @@ public class Combat {
 		menuPrincipal();
 	}
 	
-	public static void videEcran(){
-		for(int i=0; i<40; i++){
-			System.out.println("");
-		}
-	}
-	
-	public static void pause(){
-		System.out.println("Appuyez sur entre");
-		scanner.nextLine();
-	}
 	
 	public static int choixGuerrier(boolean[] championsChoisis, EquipeGuerrier equipe){
 		int choix ;
@@ -230,9 +220,9 @@ public class Combat {
 		
 	
 		combattants[0] = choisirCombatant(0);
-		videEcran();
+		Utilitaires.videEcran();
 		combattants[1] = choisirCombatant(1);
-		videEcran();
+		Utilitaires.videEcran();
 		
 		while (!combatFini()){
 			System.out.println("\nTour de " + combattants[tour].getNom()+"\n");
@@ -271,16 +261,16 @@ public class Combat {
 		switch (choix) {
 		case 1:
 			attaque(tour, combattants);
-			videEcran();
+			Utilitaires.videEcran();
 			break ;
 		case 2:
 			combattants[tour] = choisirCombatant(tour);
-			videEcran();
+			Utilitaires.videEcran();
 			break ;
 		default:
 			afficherEquipe(listeEquipe[tour]);
-			pause();
-			videEcran();
+			Utilitaires.pause();
+			Utilitaires.videEcran();
 			choixAction(tour, combattants);
 			break;
 		}
@@ -348,15 +338,15 @@ public class Combat {
 			attaquant.volerPrivilege(defenseur);
 			System.out.println("\n" + attaquant.getNom() + " vole tous les privileges de " + defenseur.getNom() + "\n");
 			
-			pause();
-			videEcran();
+			Utilitaires.pause();
+			Utilitaires.videEcran();
 			
 			if (!combatFini()){
 				combattants[(tour+1)%2] = choisirCombatant((tour+1)%2);
 			}
 		}
 		else{
-			pause();
+			Utilitaires.pause();
 		}
 	}
 }

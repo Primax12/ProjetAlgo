@@ -27,6 +27,17 @@ public class Utilitaires {
 	public static int choixEntierEntre(int borneMin, int borneMax){
 		return choixEntierEntre(borneMin, borneMax, "");
 	}
+	
+	public static void videEcran(){
+		for(int i=0; i<40; i++){
+			System.out.println("");
+		}
+	}
+	
+	public static void pause(){
+		System.out.println("Appuyez sur entre");
+		scanner.nextLine();
+	}
 }
 
 
