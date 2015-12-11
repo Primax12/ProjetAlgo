@@ -14,11 +14,6 @@ public class Utilitaires {
 								+ valeurMinimale;
 		return resultat;
 	}
-
-	
-	public static int choixEntierEntre(int borneMin, int borneMax){
-		return choixEntierEntre(borneMin, borneMax, "");
-	}
 	
 	public static int choixEntierEntre(int borneMin, int borneMax, String txt){
 		int choix = scanner.nextInt();
@@ -27,6 +22,10 @@ public class Utilitaires {
 			choix = scanner.nextInt();
 		} 
 		return choix ;
+	}
+	
+	public static int choixEntierEntre(int borneMin, int borneMax){
+		return choixEntierEntre(borneMin, borneMax, "");
 	}
 }
 
