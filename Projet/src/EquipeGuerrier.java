@@ -100,12 +100,6 @@ public class EquipeGuerrier {
 		return tableSelonForce ;
 	}
 	
-	
-	public Guerrier[] tableGuerrierAvecPrivilege(int[] privileges){
-		//TODO
-		return null;
-	}
-	
 	private void triPV(Guerrier[] liste, int deb, int fin){
 		if (fin > deb){
 			int indicePivot = partition(liste, deb, fin);

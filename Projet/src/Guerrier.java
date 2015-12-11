@@ -13,8 +13,8 @@ public class Guerrier {
 													"Les coups portes feront plus de degats.", 
 													"Possede un bouclier qui encaisse 25% des degats",
 													"Resiste a  la derniere attaque",
-													"Soin +1PV par tour.",
-													"Empoisonne son adversaire (-1PV par tour)"} ;
+													"Soin : +5PV par tour.",
+													"Empoisonne son adversaire (-5PV par tour)"} ;
 	
 	public Guerrier(String nom , int nbrePV){
 		if (nom.equals("")) throw new IllegalArgumentException("Le nom ne peut pas etre une chaine de caractere vide.");
@@ -78,8 +78,8 @@ public class Guerrier {
 	 * @return int correspondant a  la force de frappe. (determine le de a  jeter).
 	 */
 	public int donnerForceDeFrappe(){
-		int forceFrappe = (this.nbrePV/this.pvMax)*100 ;
-		return (forceFrappe-1)/25 + 1 ;
+		double forceFrappe = ((double)this.nbrePV/(double)this.pvMax)*100 ;
+		return (int)(forceFrappe-1)/25 + 1 ;
 	}
 	
 	public boolean possede(int privRecherche){

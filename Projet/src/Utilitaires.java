@@ -20,6 +20,7 @@ public class Utilitaires {
 		while (choix < borneMin || choix > borneMax){
 			System.out.print(txt + "Votre choix doit se situer entre " + borneMin + " et " + borneMax + " : ");
 			choix = scanner.nextInt();
+			scanner.nextLine();
 		} 
 		return choix ;
 	}
@@ -27,18 +28,6 @@ public class Utilitaires {
 	public static int choixEntierEntre(int borneMin, int borneMax){
 		return choixEntierEntre(borneMin, borneMax, "");
 	}
-	
-	public static void videEcran(){
-		for(int i=0; i<40; i++){
-			System.out.println("");
-		}
-	}
-	
-	// La méthode ne fonctionne pas quand elle est appelée depuis Utilitaires...
-	/**public static void pause(){
-		System.out.println("Appuyez sur entre");
-		scanner.nextLine();
-	}*/
 }
 
 
