@@ -1,9 +1,6 @@
-import javax.sound.midi.Synthesizer;
-
 /**
  * @author Hardi Alexandre + NUEZ SORIANO, Diego
  */
- //test
 public class Combat {
 	
 	public static java.util.Scanner scanner = new java.util.Scanner(System.in);
@@ -62,14 +59,14 @@ public class Combat {
 		
 		int choix ;
 		for (int i = 0 ; i < 3 ; i++){
-			afficherListeGuerrier(listeGuerrier);
+			afficherListeGuerrier(listeGuerrier, championsChoisis);
 			
 			choix = choixGuerrier(championsChoisis, equipe1) ;
 			
 			equipe1.ajouterGuerrier(listeGuerrier[choix]);
 			championsChoisis[choix] = true ;
 			
-			afficherListeGuerrier(listeGuerrier);
+			afficherListeGuerrier(listeGuerrier, championsChoisis);
 			
 			choix = choixGuerrier(championsChoisis, equipe2) ;
 			
@@ -152,8 +149,8 @@ public class Combat {
 	public static void affichageRegles(){
 		System.out.println("\n\t==== REGLES DU JEU ==== \n");
 		
-		System.out.println("Creez votre equipe de 3 combattants et affrontez vos amis dans un combat aÂ  mort!");
-		System.out.println("\nApres avoir choisi le nom de votre equipe, choisissez 3 champions aÂ  tour de role");
+		System.out.println("Creez votre equipe de 3 combattants et affrontez vos amis dans un combat aÂ  mort!");
+		System.out.println("\nApres avoir choisi le nom de votre equipe, choisissez 3 champions aÂ  tour de role");
 		System.out.println("parmi les 10 qui vous sont proposes. Ensuite, le combat commence !\n");
 		
 		System.out.println("Chaque combattant possede un privilege au debut du jeu, cependant un combattant");
@@ -162,9 +159,9 @@ public class Combat {
 		System.out.println("Pendant le combat, vous pouvez consulter la liste de vos champion a tout moment");
 		System.out.println("Vous pouvez egalement changer de champion pendant le combat, mais le changement");
 		System.out.println("compte pour un tour. (/!\\ le changement ne soigne pas votre champion.)");
-		System.out.println("Les degats que vos champions vont infliger sont proportionnel aÂ leurs PV !");
+		System.out.println("Les degats que vos champions vont infliger sont proportionnel aÂ leurs PV !");
 
-		System.out.println("Vous perdez lorsque tous vos champions sont aÂ  0PV! \n");
+		System.out.println("Vous perdez lorsque tous vos champions sont aÂ  0PV! \n");
 		
 		menuPrincipal();
 	}
@@ -182,10 +179,18 @@ public class Combat {
 		return choix ;
 	}
 	
-	public static void afficherListeGuerrier(Guerrier[] listeGuerrier){
+	public static void afficherListeGuerrier(Guerrier[] listeGuerrier, boolean[] championsChoisis){
 		System.out.println("\n=== LISTE DES GUERRIERS ===\n");
 		for (int j = 0 ; j < listeGuerrier.length ; j++){
-			System.out.println(j + " - " + listeGuerrier[j] + "\n");
+			if (!championsChoisis[j])
+				System.out.println(j + " - " + listeGuerrier[j] + "\n");
+		}
+	}
+	
+	public static void afficherEquipe(EquipeGuerrier equipe){
+		System.out.println("\n=== LISTE DES GUERRIERS ===\n");
+		for (int i = 0 ; i < equipe.getNbreGuerrier() ; i++){
+			System.out.println(i + " - " + equipe.getGuerrier(i) + "\n");
 		}
 	}
 	
@@ -211,7 +216,7 @@ public class Combat {
 	
 	public static Guerrier choisirCombatant(int tour){
 		System.out.println("Equipe "+listeEquipe[tour].getNom()+" Choissisez votre combattant: ");
-		afficherListeGuerrier(listeEquipe[tour].getListeGuerriers());
+		afficherEquipe(listeEquipe[tour]);
 		
 		System.out.print("Faites votre choix : ");
 		int choix = Utilitaires.choixEntierEntre(0, listeEquipe[tour].getNbreGuerrier()-1, "Ce combattant est mort! ");
@@ -241,7 +246,7 @@ public class Combat {
 			combattants[tour] = choisirCombatant(tour);
 			break ;
 		default:
-			afficherListeGuerrier(listeEquipe[tour].getListeGuerriers());
+			afficherEquipe(listeEquipe[tour]);
 			choixAction(tour, combattants);
 			break;
 		}
@@ -250,7 +255,7 @@ public class Combat {
 	public static void attaque(int tour, Guerrier[] combattants){
 		Guerrier attaquant = combattants[tour], defenseur = combattants[(tour+1)%2];
 		int force = attaquant.donnerForceDeFrappe();
-		int degats = 100;// Utilitaires.unEntierAuHasardEntre(force*2, force*4);
+		int degats = 100;//Utilitaires.unEntierAuHasardEntre(force*3, force*5);
 		
 		System.out.println(attaquant.getNom()+" inflige "+degats+" degats à "+defenseur.getNom());
 		
