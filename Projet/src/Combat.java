@@ -17,7 +17,7 @@ public class Combat {
 		
 		System.out.println("\nBienvenu dans Gladiator !");
 		
-		Utilitaires.pause();
+		pause();
 		Utilitaires.videEcran();
 		
 		menuPrincipal();
@@ -95,7 +95,7 @@ public class Combat {
 		Utilitaires.videEcran();
 		
 		System.out.println("\nQue le combat commence !");
-		Utilitaires.pause();
+		pause();
 		Utilitaires.videEcran();
 	}
 	
@@ -255,9 +255,7 @@ public class Combat {
 		
 		System.out.print("\nFaites votre choix : ");
 		int choix = Utilitaires.choixEntierEntre(1, 3);
-		
-		//videEcran();
-		
+				
 		switch (choix) {
 		case 1:
 			attaque(tour, combattants);
@@ -269,11 +267,16 @@ public class Combat {
 			break ;
 		default:
 			afficherEquipe(listeEquipe[tour]);
-			Utilitaires.pause();
+			pause();
 			Utilitaires.videEcran();
 			choixAction(tour, combattants);
 			break;
 		}
+	}
+	
+	public static void pause(){
+		System.out.println("Appuyez sur entre");
+		scanner.nextLine();
 	}
 	
 	public static void attaque(int tour, Guerrier[] combattants){
@@ -338,7 +341,7 @@ public class Combat {
 			attaquant.volerPrivilege(defenseur);
 			System.out.println("\n" + attaquant.getNom() + " vole tous les privileges de " + defenseur.getNom() + "\n");
 			
-			Utilitaires.pause();
+			pause();
 			Utilitaires.videEcran();
 			
 			if (!combatFini()){
@@ -346,7 +349,7 @@ public class Combat {
 			}
 		}
 		else{
-			Utilitaires.pause();
+			pause();
 		}
 	}
 }

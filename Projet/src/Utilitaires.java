@@ -34,10 +34,11 @@ public class Utilitaires {
 		}
 	}
 	
-	public static void pause(){
+	// La méthode ne fonctionne pas quand elle est appelée depuis Utilitaires...
+	/**public static void pause(){
 		System.out.println("Appuyez sur entre");
 		scanner.nextLine();
-	}
+	}*/
 }
 
 
