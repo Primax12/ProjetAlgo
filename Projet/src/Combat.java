@@ -7,7 +7,7 @@ public class Combat {
 	public static EquipeGuerrier[] listeEquipe = new EquipeGuerrier[2]; 
 	
 	
-	//test
+	
 	public static void main(String args[]){
 		
 		System.out.println("*********************************");
