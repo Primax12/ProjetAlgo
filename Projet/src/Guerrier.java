@@ -22,6 +22,7 @@ public class Guerrier {
 		this.nom = nom ;
 		this.nbrePV = nbrePV ;
 		this.pvMax  = nbrePV ; 
+		this.dernierCoup = false;
 		this.privilege = new boolean[LISTE_PRIVILEGE.length];
 	}
 
@@ -44,6 +45,11 @@ public class Guerrier {
 		
 	}
 	
+	public void ajouterPV (int nbrePV){
+		if (nbrePV <= 0) throw new IllegalArgumentException("Un guerrier ne peut pas avoir un nombre de point de vie negatif.");
+		this.nbrePV = this.nbrePV + nbrePV;
+	}
+	
 	public boolean isPoison() {
 		return poison;
 	}
@@ -54,6 +60,10 @@ public class Guerrier {
 
 	public boolean isDernierCoup() {
 		return dernierCoup;
+	}
+	
+	public void setDernierCoup(boolean bool){
+		this.dernierCoup = bool;
 	}
 
 	public String getNom() {
