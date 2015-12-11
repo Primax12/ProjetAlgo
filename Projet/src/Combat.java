@@ -9,12 +9,16 @@ public class Combat {
 	
 	
 	public static void main(String args[]){
+		videEcran();
 		
 		System.out.println("*********************************");
 		System.out.println("**          GLADIATOR          **");
 		System.out.println("*********************************");
 		
 		System.out.println("\nBienvenu dans Gladiator !");
+		
+		pause();
+		videEcran();
 		
 		menuPrincipal();
 		
@@ -29,6 +33,8 @@ public class Combat {
 		
 		System.out.print("\nFaites votre choix : ");
 		int choix = Utilitaires.choixEntierEntre(1, 3);
+		
+		videEcran();
 		
 		switch (choix) {
 		case 1:
@@ -79,7 +85,11 @@ public class Combat {
 		listeEquipe[0] = equipe1;
 		listeEquipe[1] = equipe2;
 		
+		videEcran();
+		
 		System.out.println("\nQue le combat commence !");
+		pause();
+		videEcran();
 	}
 	
 	/** ==== LISTE DES PRIVILEGES ====
@@ -167,6 +177,17 @@ public class Combat {
 		menuPrincipal();
 	}
 	
+	public static void videEcran(){
+		for(int i=0; i<40; i++){
+			System.out.println("");
+		}
+	}
+	
+	public static void pause(){
+		System.out.println("Appuyez sur entre");
+		scanner.nextLine();
+	}
+	
 	public static int choixGuerrier(boolean[] championsChoisis, EquipeGuerrier equipe){
 		int choix ;
 		while (true){
@@ -202,17 +223,16 @@ public class Combat {
 		
 	
 		combattants[0] = choisirCombatant(0);
+		videEcran();
 		combattants[1] = choisirCombatant(1);
+		videEcran();
 		
 		while (!combatFini()){
-			System.out.println("\nTour de " + combattants[tour].getNom() + "\t" + combattants[tour].getNbrePV() + "/" + combattants[tour].getNbrePvMax() +"\n");
-			choixAction(tour, combattants);
+			System.out.println("\nTour de " + combattants[tour].getNom()+"\n");
 			System.out.println(combattants[0] + "\n" + combattants[1]);
+			choixAction(tour, combattants);
 			tour = (tour+1)%2;
 		}
-		
-		
-		
 	}
 	
 	public static Guerrier choisirCombatant(int tour){
@@ -239,15 +259,21 @@ public class Combat {
 		System.out.print("\nFaites votre choix : ");
 		int choix = Utilitaires.choixEntierEntre(1, 3);
 		
+		//videEcran();
+		
 		switch (choix) {
 		case 1:
 			attaque(tour, combattants);
+			videEcran();
 			break ;
 		case 2:
 			combattants[tour] = choisirCombatant(tour);
+			videEcran();
 			break ;
 		default:
 			afficherEquipe(listeEquipe[tour]);
+			pause();
+			videEcran();
 			choixAction(tour, combattants);
 			break;
 		}
@@ -258,15 +284,69 @@ public class Combat {
 		int force = attaquant.donnerForceDeFrappe();
 		int degats = 100;//Utilitaires.unEntierAuHasardEntre(force*3, force*5);
 		
-		System.out.println(attaquant.getNom()+" inflige "+degats+" degats Ã  "+defenseur.getNom());
+		for (int i=0; i<6; i++){
+			if (attaquant.possede(i)){
+				switch (i){
+				case 0:
+					if (Utilitaires.unEntierAuHasardEntre(1, 8)==1){
+						degats = degats + (degats/2);
+						System.out.println("Coup critique!");
+					}
+					break;
+				case 1:
+					degats = degats + degats/10;
+					System.out.println(attaquant.getNom()+" frappe fort!");
+					break;
+				case 4:
+					attaquant.ajouterPV(5);
+					System.out.println(attaquant.getNom()+" se soigne");
+					break;
+				case 5:
+					if (!defenseur.isPoison()){
+						defenseur.setPoison(true);
+						System.out.println(attaquant.getNom()+" empoisonne "+defenseur.getNom());
+					}
+					break;
+				}
+			}
+			if (defenseur.possede(i)){
+				switch (i){
+				case 2:
+					degats = degats - degats/4;
+					System.out.println(defenseur.getNom()+" se protege avec son bouclier");
+					break;
+				case 3:
+					if (!defenseur.isDernierCoup() && degats>defenseur.getNbrePV()){
+						degats = 0;
+						defenseur.setDernierCoup(true);
+						System.out.println(defenseur.getNom()+" esquive son coup fatal!");
+					}
+					break;
+				}
+			}
+		}
+		
+		System.out.println(attaquant.getNom()+" inflige "+degats+" degats a  "+defenseur.getNom());
+		
+		if (defenseur.isPoison()){
+			degats = degats+5;
+			System.out.println(defenseur.getNom()+" subit les effet du poison");
+		}
 		
 		defenseur.subirDegats(degats);
+		
 		if (defenseur.getNbrePV() == 0){
 			listeEquipe[(tour+1)%2].mourir(defenseur);
 			System.out.println(defenseur.getNom()+" est mort!");
+			
+			pause();
+			videEcran();
+			
 			if (!combatFini()){
 				combattants[(tour+1)%2] = choisirCombatant((tour+1)%2);
 			}
+		}else{
+			pause();
 		}
 	}
 }
