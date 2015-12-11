@@ -12,13 +12,13 @@ public class Guerrier {
 	private static final String[] LISTE_PRIVILEGE= {"Une chance sur 8 de faire un coup critique",
 													"Les coups portes feront plus de degats.", 
 													"Possede un bouclier qui encaisse 25% des degats",
-													"Resiste a  la derniere attaque",
+													"Resiste a  la derniere attaque",
 													"Soin +1PV par tour.",
 													"Empoisonne son adversaire (-1PV par tour)"} ;
 	
 	public Guerrier(String nom , int nbrePV){
 		if (nom.equals("")) throw new IllegalArgumentException("Le nom ne peut pas etre une chaine de caractere vide.");
-		if (nbrePV <= 0) throw new IllegalArgumentException("Le nombre de PV doit etre strictement supperieur a  0");
+		if (nbrePV <= 0) throw new IllegalArgumentException("Le nombre de PV doit etre strictement supperieur a  0");
 		this.nom = nom ;
 		this.nbrePV = nbrePV ;
 		this.pvMax  = nbrePV ; 
@@ -61,8 +61,8 @@ public class Guerrier {
 	}
 	
 	/**
-	 * Donne la force de frappe d'un combattant sur une echelle de 4(max) a  1(min).
-	 * @return int correspondant a  la force de frappe. (determine le de a  jeter).
+	 * Donne la force de frappe d'un combattant sur une echelle de 4(max) a  1(min).
+	 * @return int correspondant a  la force de frappe. (determine le de a  jeter).
 	 */
 	public int donnerForceDeFrappe(){
 		int forceFrappe = (this.nbrePV/this.pvMax)*100 ;
