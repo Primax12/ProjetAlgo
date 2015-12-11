@@ -13,11 +13,23 @@ public class EquipeGuerrier {
 		this.nom = nom;
 		this.nbreGuerrier = 0;
 		this.nbreMaxGuerrier = nbreMaxGuerrier ;
-		this.equipe = new Guerrier[nbreMaxGuerrier];
+		this.equipe = new Guerrier[this.nbreMaxGuerrier];
 	}
 	
 	public EquipeGuerrier(String nom){
 		this(nom, 3) ;
+	}
+	
+	public String getNom(){
+		return this.nom ;
+	}
+	
+	public Guerrier getGuerrier(int i){
+		return this.equipe[i];
+	}
+	
+	public int getNbreGuerrier(){
+		return nbreGuerrier;
 	}
 	
 	public int donnerIndice(Guerrier guerrier){
@@ -29,19 +41,10 @@ public class EquipeGuerrier {
 		return -1 ;
 	}
 	
-	public String getNom(){
-		return this.nom ;
-	}
-	
-	public int getNbreGuerrier(){
-		return nbreGuerrier;
-	}
-	
 	public int nombreGuerriersEnJeu(){
 		return this.nbreGuerrier;
 	}
-	
-	
+		
 	public boolean estPresent(Guerrier guerrier){
 		for (int i=0; i<this.nbreGuerrier; i++){
 			if (this.equipe[i].equals(guerrier)) 
@@ -127,10 +130,6 @@ public class EquipeGuerrier {
 		if (indice<0 || indice>nbreGuerrier - 1) throw new IllegalArgumentException("Ce combatant n'existe pas ou est mort") ;
 		
 		return equipe[indice];
-	}
-	
-	public Guerrier[] getListeGuerriers(){
-		return this.equipe;
 	}
 
 	public String toString() {
