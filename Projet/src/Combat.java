@@ -61,8 +61,15 @@ public class Combat {
 		EquipeGuerrier equipe1 = new EquipeGuerrier(nom);
 		
 		System.out.print("\n\nJoueur 2 : choisissez le nom de votre equipe : ");
-		nom = scanner.next();
-		EquipeGuerrier equipe2 = new EquipeGuerrier(nom);
+		EquipeGuerrier equipe2 ;
+		while (true){
+			nom = scanner.next();
+			if (!nom.equals(equipe1.getNom())){
+				equipe2 = new EquipeGuerrier(nom);
+				break;
+			}
+			System.out.print("Ce nom a déjà été pris ! Veuillez choisir un autre nom : ");
+		}
 		
 		int choix ;
 		for (int i = 0 ; i < 3 ; i++){
@@ -172,7 +179,7 @@ public class Combat {
 		System.out.println("compte pour un tour. (/!\\ le changement ne soigne pas votre champion.)");
 		System.out.println("Les degats que vos champions vont infliger sont proportionnel a leurs PV !");
 
-		System.out.println("Vous perdez lorsque tous vos champions sont aÂ  0PV! \n");
+		System.out.println("Vous perdez lorsque tous vos champions sont morts! \n");
 		
 		menuPrincipal();
 	}
@@ -290,21 +297,21 @@ public class Combat {
 				case 0:
 					if (Utilitaires.unEntierAuHasardEntre(1, 8)==1){
 						degats = degats + (degats/2);
-						System.out.println("Coup critique!");
+						System.out.println("Coup critique!\n");
 					}
 					break;
 				case 1:
 					degats = degats + degats/10;
-					System.out.println(attaquant.getNom()+" frappe fort!");
+					System.out.println(attaquant.getNom()+" frappe fort!\n");
 					break;
 				case 4:
 					attaquant.ajouterPV(5);
-					System.out.println(attaquant.getNom()+" se soigne");
+					System.out.println(attaquant.getNom()+" se soigne\n");
 					break;
 				case 5:
 					if (!defenseur.isPoison()){
 						defenseur.setPoison(true);
-						System.out.println(attaquant.getNom()+" empoisonne "+defenseur.getNom());
+						System.out.println(attaquant.getNom()+" empoisonne "+defenseur.getNom() + "\n");
 					}
 					break;
 				}
@@ -313,24 +320,24 @@ public class Combat {
 				switch (i){
 				case 2:
 					degats = degats - degats/4;
-					System.out.println(defenseur.getNom()+" se protege avec son bouclier");
+					System.out.println(defenseur.getNom()+" se protege avec son bouclier\n");
 					break;
 				case 3:
 					if (!defenseur.isDernierCoup() && degats>defenseur.getNbrePV()){
 						degats = 0;
 						defenseur.setDernierCoup(true);
-						System.out.println(defenseur.getNom()+" esquive son coup fatal!");
+						System.out.println(defenseur.getNom()+" esquive son coup fatal!\n");
 					}
 					break;
 				}
 			}
 		}
 		
-		System.out.println(attaquant.getNom()+" inflige "+degats+" degats a� "+defenseur.getNom());
+		System.out.println(attaquant.getNom()+" inflige "+degats+" degats a "+defenseur.getNom());
 		
 		if (defenseur.isPoison()){
 			degats = degats+5;
-			System.out.println(defenseur.getNom()+" subit les effet du poison");
+			System.out.println(defenseur.getNom()+" subit les effet du poison\n");
 		}
 		
 		defenseur.subirDegats(degats);
@@ -338,6 +345,8 @@ public class Combat {
 		if (defenseur.getNbrePV() == 0){
 			listeEquipe[(tour+1)%2].mourir(defenseur);
 			System.out.println(defenseur.getNom()+" est mort!");
+			attaquant.volerPrivilege(defenseur);
+			System.out.println("\n" + attaquant.getNom() + " vole tous les privileges de " + defenseur.getNom() + "\n");
 			
 			pause();
 			videEcran();
@@ -345,7 +354,8 @@ public class Combat {
 			if (!combatFini()){
 				combattants[(tour+1)%2] = choisirCombatant((tour+1)%2);
 			}
-		}else{
+		}
+		else{
 			pause();
 		}
 	}

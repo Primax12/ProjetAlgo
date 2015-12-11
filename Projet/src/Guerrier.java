@@ -46,8 +46,11 @@ public class Guerrier {
 	}
 	
 	public void ajouterPV (int nbrePV){
-		if (nbrePV <= 0) throw new IllegalArgumentException("Un guerrier ne peut pas avoir un nombre de point de vie negatif.");
-		this.nbrePV = this.nbrePV + nbrePV;
+		if (nbrePV <= 0) throw new IllegalArgumentException("On ne peut ajouter un nombre de PV négatif à un guerrier.");
+		if (this.nbrePV + nbrePV <= this.pvMax)
+			this.nbrePV = this.nbrePV + nbrePV;
+		else
+			this.nbrePV = this.pvMax ;
 	}
 	
 	public boolean isPoison() {
@@ -136,7 +139,14 @@ public class Guerrier {
 		return false ;
 	}
 	
-
+	public void volerPrivilege(Guerrier adversaire){
+		if (adversaire == null) throw new IllegalArgumentException("");
+		for (int i = 0; i < this.privilege.length; i++){
+			if (adversaire.privilege[i])
+				this.privilege[i] = true ;
+		}
+	}
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
