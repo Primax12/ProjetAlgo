@@ -32,6 +32,35 @@ public class TestGuerrier {
 		catch(IllegalArgumentException e){
 			System.out.println(e.getMessage() + "\nTest Ko");
 		}
+		
+		try{
+			System.out.println("\n=== TEST DE DONNERPRIVILEGE ===\n");
+			Guerrier g1 = new Guerrier("test", 100);
+			//g1.donnerPrivilege(-1);
+			g1.donnerPrivilege(0);
+			g1.donnerPrivilege(0);
+			//g1.donnerPrivilege(5);
+			//g1.donnerPrivilege(6);
+			System.out.println("\n=== Test de donnerPrivilege Ok ===\n");
+		}
+		catch(IllegalArgumentException e){
+			System.out.println(e.getMessage() + "\nTest Ko");
+		}
+		try{
+			System.out.println("\n=== TEST DE RETIREPRIVILEGE ===\n");
+			Guerrier g1 = new Guerrier("test", 100);
+			g1.donnerPrivilege(1);
+			g1.donnerPrivilege(3);
+			//g1.retirePrivilege(-1);
+			g1.retirePrivilege(0);
+			g1.retirePrivilege(1);
+			g1.retirePrivilege(5);
+			//g1.retirePrivilege(6);
+			System.out.println("\n=== Test de retirePrivilege Ok ===\n");
+		}
+		catch(IllegalArgumentException e){
+			System.out.println(e.getMessage() + "\nTest Ko");
+		}
 	}
 }
 
