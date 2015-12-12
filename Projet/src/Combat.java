@@ -71,6 +71,10 @@ public class Combat {
 		menuPrincipal();
 	}
 	
+	/**
+	 * Affiche une interface permettant au joueur de creerson equipe de combatants.
+	 * 
+	 */
 	public static void CreationEquipe(){
 		boolean[] championsChoisis = new boolean[10];
 		Guerrier[] listeGuerrier = CreationListeGuerrier() ;
@@ -87,7 +91,7 @@ public class Combat {
 				equipe2 = new EquipeGuerrier(nom);
 				break;
 			}
-			System.out.print("Ce nom a déjà été pris ! Veuillez choisir un autre nom : ");
+			System.out.print("Ce nom a deja� ete pris ! Veuillez choisir un autre nom : ");
 		}
 		
 		int choix ;
@@ -183,6 +187,10 @@ public class Combat {
 		return listeGuerrier ;
 	}
 	
+	/**
+	 * Propose a l'utilisateur de choisir un guerrier parmis ceux pas encore choisis
+	 * 
+	 */
 	public static int choixGuerrier(boolean[] championsChoisis, EquipeGuerrier equipe){
 		int choix ;
 		while (true){
@@ -196,6 +204,10 @@ public class Combat {
 		return choix ;
 	}
 	
+	/**
+	 * Affiche les guerriers pas encore choisis
+	 * 
+	 */
 	public static void afficherListeGuerrier(Guerrier[] listeGuerrier, boolean[] championsChoisis){
 		System.out.println("\n=== LISTE DES GUERRIERS ===\n");
 		for (int j = 0 ; j < listeGuerrier.length ; j++){
@@ -204,6 +216,10 @@ public class Combat {
 		}
 	}
 	
+	/**
+	 * Affiche les guerriers encore vivants d'une equipe.
+	 * 
+	 */
 	public static void afficherEquipe(EquipeGuerrier equipe){
 		System.out.println("\n=== LISTE DES GUERRIERS ===\n");
 		for (int i = 0 ; i < equipe.getNbreGuerrier() ; i++){
@@ -230,6 +246,10 @@ public class Combat {
 		}
 	}
 	
+	/**
+	 * Renseigne si le guerrier possede les privileges passe en parametre.
+	 * @return  bool true si le possede, si non fasle.
+	 */
 	public static Guerrier choisirCombatant(int tour){
 		System.out.println("Equipe "+listeEquipe[tour].getNom()+" Choissisez votre combattant: ");
 		afficherEquipe(listeEquipe[tour]);
@@ -240,6 +260,10 @@ public class Combat {
 		return listeEquipe[tour].selectionner(choix);
 	}
 	
+	/**
+	 * Permet de au joueur dont c'est le tour de choisir son guerrier qu'il met au combat.
+	 * @return  Guerrier revoie le guerrier choisis.
+	 */
 	public static Guerrier choisirCombatant(int tour, Guerrier combattant){
 		System.out.println("Equipe "+listeEquipe[tour].getNom()+" Choissisez votre combattant: ");
 		afficherEquipe(listeEquipe[tour]);
@@ -249,11 +273,15 @@ public class Combat {
 			choix = Utilitaires.choixEntierEntre(0, listeEquipe[tour].getNbreGuerrier()-1);
 			if (!listeEquipe[tour].selectionner(choix).equals(combattant))
 				break;
-			System.out.println("Ce combattant est déjà au combat !");	
+			System.out.println("Ce combattant est deja� au combat !");	
 		}
 		return listeEquipe[tour].selectionner(choix);
 	}
 	
+	/**
+	 * Pour les guerriers des deux equipes
+	 * @return  bool true une des equipe n'a plus des guerriers vivants.
+	 */
 	public static boolean combatFini(){
 		if (listeEquipe[0].getNbreGuerrier() == 0) return true;
 		if (listeEquipe[1].getNbreGuerrier() == 0) return true;
@@ -287,6 +315,10 @@ public class Combat {
 		}
 	}
 	
+	/**
+	 * Effectue les operations necessaires pour realiser une attaque en tennant compte des privileges.
+	 * 
+	 */
 	public static void attaque(int tour, Guerrier[] combattants){
 		Guerrier attaquant = combattants[tour], defenseur = combattants[(tour+1)%2];
 		int force = attaquant.donnerForceDeFrappe();
@@ -358,7 +390,7 @@ public class Combat {
 				combattants[(tour+1)%2] = choisirCombatant((tour+1)%2);			
 			else
 				System.out.println("==== La victoire est pour L'equipe "
-						+ listeEquipe[tour].getNom() + " ====\n ==== Félicitations !====");
+						+ listeEquipe[tour].getNom() + " ====\n ==== Felicitations !====");
 				pause();
 				videEcran();
 
@@ -367,13 +399,21 @@ public class Combat {
 			pause();
 		}
 	}
-
+	
+	/**
+	 * Affiche 40 lignes pour facilite la lisibilite
+	 * 
+	 */
 	public static void videEcran(){
 		for(int i=0; i<40; i++){
 			System.out.println("");
 		}
 	}
 	
+	/**
+	 * Met en pause le deroulement du programme pour facilite la lisibilite
+	 * 
+	 */
 	public static void pause(){
 		System.out.println("Appuyez sur entre");
 		scanner.nextLine();

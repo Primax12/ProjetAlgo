@@ -32,6 +32,10 @@ public class EquipeGuerrier {
 		return nbreGuerrier;
 	}
 	
+	/**
+	 * Renseigne sur l'indice du guerrier dans la liste de l'equipe.
+	 * @return  int l'indice dans la liste, -1 s'il n'y est pas.
+	 */
 	public int donnerIndice(Guerrier guerrier){
 		if (guerrier == null) throw new IllegalArgumentException("Un guerrier ne peut pas etre null");
 		for (int i=0; i<this.nbreGuerrier; i++){

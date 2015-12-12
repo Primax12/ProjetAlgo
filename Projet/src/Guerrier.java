@@ -82,12 +82,20 @@ public class Guerrier {
 		return (int)(forceFrappe-1)/25 + 1 ;
 	}
 	
+	/**
+	 * Renseigne si un guerrier possède le privilege passe en parametre.
+	 * @return bool true si le possede, si non fasle.
+	 */
 	public boolean possede(int privRecherche){
 		if (privRecherche >= privilege.length || privRecherche < 0)
 			throw new IllegalArgumentException("Ce privilege n'existe pas");
 		return privilege[privRecherche] ;
 	}
 	
+	/**
+	 * Renseigne si le guerrier possede les privileges passes en parametre.
+	 * @return  bool true si le possede, si non fasle.
+	 */
 	public boolean possedeTous(int[] privilegeRecherche){
 		for (int i = 0 ; i < privilegeRecherche.length ; i++){
 			if ((privilegeRecherche[i] >= privilege.length || privilegeRecherche[i] < 0))
@@ -98,6 +106,10 @@ public class Guerrier {
 		return true ;
 	}
 	
+	/**
+	 * Renseigne si le guerrier ne possede aucun des privileges passes en parametre.
+	 * @return  bool true si ne les possede pas, si non fasle.
+	 */
 	public boolean possedeAucun(int[] privilegeRecherche){
 		for (int i = 0 ; i < privilegeRecherche.length ; i++){
 			if (privilegeRecherche[i] >= privilege.length || privilegeRecherche[i] < 0)
