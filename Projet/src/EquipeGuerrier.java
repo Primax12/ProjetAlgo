@@ -130,7 +130,7 @@ public class EquipeGuerrier {
 	}
 	
 	public Guerrier[] tableGuerrierSelonForce (int force){
-		if (force>4) throw new IllegalArgumentException();
+		if (force>4 || force<0) throw new IllegalArgumentException();
 		Guerrier[] listeTemp = new Guerrier[this.nbreGuerrier] ;
 		int tailleTable = 0 ;
 		for (int i = 0; i < this.nbreGuerrier; i++){
