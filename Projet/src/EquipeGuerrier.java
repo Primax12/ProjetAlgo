@@ -50,6 +50,7 @@ public class EquipeGuerrier {
 	}
 		
 	public boolean estPresent(Guerrier guerrier){
+		if (guerrier == null) throw new IllegalArgumentException("Un guerrier ne peut pas etre null");
 		for (int i=0; i<this.nbreGuerrier; i++){
 			if (this.equipe[i].equals(guerrier)) 
 				return true;
@@ -58,6 +59,7 @@ public class EquipeGuerrier {
 	}
 	
 	public boolean ajouterGuerrier(Guerrier guerrier){
+		if (guerrier == null) throw new IllegalArgumentException("Un guerrier ne peut pas etre null");
 		if (this.estPresent(guerrier) || this.nbreGuerrier == this.equipe.length) return false;
 		
 		int i  = this.nbreGuerrier;
@@ -76,6 +78,7 @@ public class EquipeGuerrier {
 	}
 	
 	public boolean mourir(Guerrier guerrier){
+		if (guerrier == null) throw new IllegalArgumentException("Un guerrier ne peut pas etre null");
 		int indice = donnerIndice(guerrier) ;
 		if (indice == -1)
 			return false ;

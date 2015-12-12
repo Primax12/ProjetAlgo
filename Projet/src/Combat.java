@@ -311,7 +311,7 @@ public class Combat {
 			pause();
 			videEcran();
 			choixAction(tour, combattants);
-			break;
+			break ;
 		}
 	}
 	
