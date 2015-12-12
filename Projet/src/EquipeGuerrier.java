@@ -9,7 +9,8 @@ public class EquipeGuerrier {
 	
 	
 	public EquipeGuerrier(String nom, int nbreMaxGuerrier){
-		if (nom.equals("")) throw new IllegalArgumentException("Le nom ne peut pas etre une chaine de caractere vide.");
+		if (nom.equals(""))
+			throw new IllegalArgumentException("Le nom ne peut pas vide.");
 		this.nom = nom;
 		this.nbreGuerrier = 0;
 		this.nbreMaxGuerrier = nbreMaxGuerrier ;
@@ -37,7 +38,8 @@ public class EquipeGuerrier {
 	 * @return  int l'indice dans la liste, -1 s'il n'y est pas.
 	 */
 	public int donnerIndice(Guerrier guerrier){
-		if (guerrier == null) throw new IllegalArgumentException("Un guerrier ne peut pas etre null");
+		if (guerrier == null) 
+			throw new IllegalArgumentException("Un guerrier ne peut pas etre null");
 		for (int i=0; i<this.nbreGuerrier; i++){
 			if (this.equipe[i].equals(guerrier)) 
 				return i;
@@ -59,9 +61,11 @@ public class EquipeGuerrier {
 	}
 	
 	public boolean ajouterGuerrier(Guerrier guerrier){
+		if (this.estPresent(guerrier) || this.nbreGuerrier == this.equipe.length)
+			return false;
 		if (guerrier == null) throw new IllegalArgumentException("Un guerrier ne peut pas etre null");
 		if (this.estPresent(guerrier) || this.nbreGuerrier == this.equipe.length) return false;
-		
+
 		int i  = this.nbreGuerrier;
 		this.nbreGuerrier++ ;
 		while (i > 0){
@@ -174,7 +178,8 @@ public class EquipeGuerrier {
 	}
 	
 	public Guerrier selectionner(int indice){
-		if (indice<0 || indice>nbreGuerrier - 1) throw new IllegalArgumentException("Ce combatant n'existe pas ou est mort") ;
+		if (indice<0 || indice>nbreGuerrier - 1)
+			throw new IllegalArgumentException("Ce combatant n'existe pas ou est mort") ;
 		
 		return equipe[indice];
 	}
@@ -186,6 +191,6 @@ public class EquipeGuerrier {
 		}
 		return txt ;
 	}
-	
+}
 
 }
