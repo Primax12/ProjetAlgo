@@ -97,7 +97,7 @@ public class Combat {
 				equipe2 = new EquipeGuerrier(nom);
 				break;
 			}
-			System.out.print("Ce nom a deja� ete pris ! Veuillez choisir un autre nom : ");
+			System.out.print("Ce nom a deja ete pris ! Veuillez choisir un autre nom : ");
 		}
 		
 		int choix ;
