@@ -82,6 +82,46 @@ public class EquipeGuerrier {
 		return true;
 	}
 	
+	public Guerrier[] tableGuerrierAvecPrivileges(int[] privileges){
+		Guerrier[] temp = new Guerrier[equipe.length];
+		int taille = 0 ;
+		for (int i = 0 ; i < this.nbreGuerrier ; i++){
+			if (equipe[i].possedeTous(privileges)){
+				temp[taille] = equipe[i];
+				taille++;
+			}
+		}
+		Guerrier[] GuerrierAvecPriv = new Guerrier[taille];
+		for (int j = 0 ; j < taille ; j++){
+			GuerrierAvecPriv[j] = temp[j];			
+		}
+		return GuerrierAvecPriv;
+	}
+	
+	public Guerrier[] tableGuerrierSansPrivileges(int[] privileges){
+		Guerrier[] temp = new Guerrier[equipe.length];
+		int taille = 0 ;
+		for (int i = 0 ; i < this.nbreGuerrier ; i++){
+			boolean possede = false ;
+			for (int j = 0 ; i < privileges.length; i++){
+				if (!equipe[i].possede(privileges[j])){
+					possede = true;
+					break ;
+				}
+				
+			}
+			if (!possede){
+				temp[taille] = equipe[i];
+				taille++;
+			}
+		}
+		Guerrier[] GuerrierSansPriv = new Guerrier[taille];
+		for (int j = 0 ; j < taille ; j++){
+			GuerrierSansPriv[j] = temp[j];			
+		}
+		return GuerrierSansPriv;
+	}
+	
 	public Guerrier[] tableGuerrierSelonForce (int force){
 		if (force>4) throw new IllegalArgumentException();
 		Guerrier[] listeTemp = new Guerrier[this.nbreGuerrier] ;

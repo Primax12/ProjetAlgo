@@ -7,7 +7,6 @@ public class Combat {
 	public static EquipeGuerrier[] listeEquipe = new EquipeGuerrier[2]; 
 	
 	
-	//test
 	public static void main(String args[]){
 		videEcran();
 		
@@ -52,6 +51,26 @@ public class Combat {
 		}
 	}
 
+	public static void affichageRegles(){
+		System.out.println("\n\t==== REGLES DU JEU ==== \n");
+		
+		System.out.println("Creez votre equipe de 3 combattants et affrontez vos amis dans un combat a  mort!");
+		System.out.println("\nApres avoir choisi le nom de votre equipe, choisissez 3 champions a  tour de role");
+		System.out.println("parmi les 10 qui vous sont proposes. Ensuite, le combat commence !\n");
+		
+		System.out.println("Chaque combattant possede un privilege au debut du jeu, cependant un combattant");
+		System.out.println("peut gagner le/les privilege/s de son adversaire en tuant celui-ci! \n");
+		
+		System.out.println("Pendant le combat, vous pouvez consulter la liste de vos champion a tout moment");
+		System.out.println("Vous pouvez egalement changer de champion pendant le combat, mais le changement");
+		System.out.println("compte pour un tour. (/!\\ le changement ne soigne pas votre champion.)");
+		System.out.println("Les degats que vos champions vont infliger sont proportionnels a leurs PV !");
+
+		System.out.println("Vous perdez lorsque tous vos champions sont morts! \n");
+		
+		menuPrincipal();
+	}
+	
 	public static void CreationEquipe(){
 		boolean[] championsChoisis = new boolean[10];
 		Guerrier[] listeGuerrier = CreationListeGuerrier() ;
@@ -164,37 +183,6 @@ public class Combat {
 		return listeGuerrier ;
 	}
 	
-	public static void affichageRegles(){
-		System.out.println("\n\t==== REGLES DU JEU ==== \n");
-		
-		System.out.println("Creez votre equipe de 3 combattants et affrontez vos amis dans un combat a  mort!");
-		System.out.println("\nApres avoir choisi le nom de votre equipe, choisissez 3 champions a  tour de role");
-		System.out.println("parmi les 10 qui vous sont proposes. Ensuite, le combat commence !\n");
-		
-		System.out.println("Chaque combattant possede un privilege au debut du jeu, cependant un combattant");
-		System.out.println("peut gagner le/les privilege/s de son adversaire en tuant celui-ci! \n");
-		
-		System.out.println("Pendant le combat, vous pouvez consulter la liste de vos champion a tout moment");
-		System.out.println("Vous pouvez egalement changer de champion pendant le combat, mais le changement");
-		System.out.println("compte pour un tour. (/!\\ le changement ne soigne pas votre champion.)");
-		System.out.println("Les degats que vos champions vont infliger sont proportionnels a leurs PV !");
-
-		System.out.println("Vous perdez lorsque tous vos champions sont morts! \n");
-		
-		menuPrincipal();
-	}
-	
-	public static void videEcran(){
-		for(int i=0; i<40; i++){
-			System.out.println("");
-		}
-	}
-	
-	public static void pause(){
-		System.out.println("Appuyez sur entre");
-		scanner.nextLine();
-	}
-	
 	public static int choixGuerrier(boolean[] championsChoisis, EquipeGuerrier equipe){
 		int choix ;
 		while (true){
@@ -247,8 +235,22 @@ public class Combat {
 		afficherEquipe(listeEquipe[tour]);
 		
 		System.out.print("Faites votre choix : ");
-		int choix = Utilitaires.choixEntierEntre(0, listeEquipe[tour].getNbreGuerrier()-1, "Ce combattant est mort! ");
+		int choix = Utilitaires.choixEntierEntre(0, listeEquipe[tour].getNbreGuerrier()-1);
 				
+		return listeEquipe[tour].selectionner(choix);
+	}
+	
+	public static Guerrier choisirCombatant(int tour, Guerrier combattant){
+		System.out.println("Equipe "+listeEquipe[tour].getNom()+" Choissisez votre combattant: ");
+		afficherEquipe(listeEquipe[tour]);
+		int choix;
+		while (true){
+			System.out.print("Faites votre choix : ");
+			choix = Utilitaires.choixEntierEntre(0, listeEquipe[tour].getNbreGuerrier()-1);
+			if (!listeEquipe[tour].selectionner(choix).equals(combattant))
+				break;
+			System.out.println("Ce combattant est déjà au combat !");	
+		}
 		return listeEquipe[tour].selectionner(choix);
 	}
 	
@@ -259,7 +261,7 @@ public class Combat {
 	}
 	
 	public static void choixAction(int tour, Guerrier[] combattants){
-		System.out.println("1 - ATTAQUER");
+		System.out.println("\n1 - ATTAQUER");
 		System.out.println("2 - CHANGER COMBATTANT");
 		System.out.println("3 - VOIR EQUIPE");
 		
@@ -273,7 +275,7 @@ public class Combat {
 			videEcran();
 			break ;
 		case 2:
-			combattants[tour] = choisirCombatant(tour);
+			combattants[tour] = choisirCombatant(tour, combattants[tour]);
 			videEcran();
 			break ;
 		default:
@@ -310,7 +312,8 @@ public class Combat {
 				case 5:
 					if (!defenseur.isPoison()){
 						defenseur.setPoison(true);
-						System.out.println(attaquant.getNom()+" empoisonne "+defenseur.getNom() + "\n");
+						System.out.println(attaquant.getNom()+" empoisonne "+ 
+									       defenseur.getNom() + "\n");
 					}
 					break;
 				}
@@ -345,7 +348,8 @@ public class Combat {
 			listeEquipe[(tour+1)%2].mourir(defenseur);
 			System.out.println(defenseur.getNom()+" est mort!");
 			attaquant.volerPrivilege(defenseur);
-			System.out.println("\n" + attaquant.getNom() + " vole tous les privileges de " + defenseur.getNom() + "\n");
+			System.out.println("\n" + attaquant.getNom() + " vole tous les privileges de " +
+							   defenseur.getNom() + "\n");
 			
 			pause();
 			videEcran();
@@ -353,7 +357,8 @@ public class Combat {
 			if (!combatFini())
 				combattants[(tour+1)%2] = choisirCombatant((tour+1)%2);			
 			else
-				System.out.println("==== La victoire est pour L'equipe " + listeEquipe[tour].getNom() + "====\n ==== Félicitations !====");
+				System.out.println("==== La victoire est pour L'equipe "
+						+ listeEquipe[tour].getNom() + " ====\n ==== Félicitations !====");
 				pause();
 				videEcran();
 
@@ -362,4 +367,16 @@ public class Combat {
 			pause();
 		}
 	}
+
+	public static void videEcran(){
+		for(int i=0; i<40; i++){
+			System.out.println("");
+		}
+	}
+	
+	public static void pause(){
+		System.out.println("Appuyez sur entre");
+		scanner.nextLine();
+	}
+	
 }
