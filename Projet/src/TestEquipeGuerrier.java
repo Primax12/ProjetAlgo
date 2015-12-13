@@ -104,10 +104,10 @@ public class TestEquipeGuerrier {
 			g1.donnerPrivilege(5);
 			Guerrier g2 = new Guerrier("g2", 100);
 			g2.donnerPrivilege(0);
-			g1.donnerPrivilege(5);
+			g2.donnerPrivilege(5);
 			Guerrier g3 = new Guerrier("g3", 100);
-			g2.donnerPrivilege(4);
-			g1.donnerPrivilege(5);
+			g3.donnerPrivilege(4);
+			g3.donnerPrivilege(5);
 			
 			eg1.ajouterGuerrier(g1);
 			eg1.ajouterGuerrier(g2);
@@ -122,10 +122,7 @@ public class TestEquipeGuerrier {
 			verif1[1] = g3;
 			Guerrier[] verif2 = eg1.tableGuerrierAvecPrivileges(priv);
 			
-			System.out.println(verif2.length);
-			//System.out.println(verif2);
-			
-			if (verif1 != verif2) System.out.println("\nTest Ko");
+			if (verif1.equals(verif2)) System.out.println("\nTest Ko");
 			System.out.println("\n=== Test du tableGuerrierAvecPrivileges Ok ===\n");
 		}
 		catch(IllegalArgumentException e){
