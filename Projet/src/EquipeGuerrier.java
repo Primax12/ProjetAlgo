@@ -9,6 +9,8 @@ public class EquipeGuerrier {
 	
 	
 	public EquipeGuerrier(String nom, int nbreMaxGuerrier){
+		if (nom == null) throw new IllegalArgumentException("No null");
+		if (nbreMaxGuerrier < 1) throw new IllegalArgumentException("L'equipe doit contenir minumum un guerrier.");
 		if (nom.equals(""))
 			throw new IllegalArgumentException("Le nom ne peut pas vide.");
 		this.nom = nom;
@@ -26,6 +28,7 @@ public class EquipeGuerrier {
 	}
 	
 	public Guerrier getGuerrier(int i){
+		if (i>nbreGuerrier || i<0) throw new IllegalArgumentException("L'indice est hors de l'equipe");
 		return this.equipe[i];
 	}
 	
@@ -94,6 +97,7 @@ public class EquipeGuerrier {
 	}
 	
 	public Guerrier[] tableGuerrierAvecPrivileges(int[] privileges){
+		if (privileges == null) throw new IllegalArgumentException("Un guerrier ne peut pas etre null");
 		Guerrier[] temp = new Guerrier[equipe.length];
 		int taille = 0 ;
 		for (int i = 0 ; i < this.nbreGuerrier ; i++){
@@ -110,6 +114,7 @@ public class EquipeGuerrier {
 	}
 	
 	public Guerrier[] tableGuerrierSansPrivileges(int[] privileges){
+		if (privileges == null) throw new IllegalArgumentException("Un guerrier ne peut pas etre null");
 		Guerrier[] temp = new Guerrier[equipe.length];
 		int taille = 0 ;
 		for (int i = 0 ; i < this.nbreGuerrier ; i++){

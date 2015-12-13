@@ -9,6 +9,10 @@ public class TestEquipeGuerrier {
 		// TEST DU CONSTRUCTEUR
 		try{
 			System.out.println("\n=== TEST DU CONSTRUCTEUR ===\n");
+			//EquipeGuerrier eg1 = new EquipeGuerrier(null);
+			//EquipeGuerrier eg1 = new EquipeGuerrier("", 3);
+			//EquipeGuerrier eg1 = new EquipeGuerrier("test", 0);
+			//EquipeGuerrier eg1 = new EquipeGuerrier("test", -3);
 			EquipeGuerrier eg1 = new EquipeGuerrier("EquipeTest1");
 			EquipeGuerrier eg2 = new EquipeGuerrier("EquipeTest2", 5);
 			System.out.println("\n=== Test du constructeur Ok ===\n");
@@ -163,7 +167,7 @@ public class TestEquipeGuerrier {
 		
 		try{
 			System.out.println("\n=== TEST DU TABLEGUERRIERSELONFORCE ===\n");
-			EquipeGuerrier eg1 = new EquipeGuerrier("EquipeTest1", 2);
+			EquipeGuerrier eg1 = new EquipeGuerrier("EquipeTest1", 3);
 			Guerrier g1 = new Guerrier("g1", 100);
 			Guerrier g2 = new Guerrier("g2", 100);
 			Guerrier g3 = new Guerrier("g3", 100);
