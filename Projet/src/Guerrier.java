@@ -112,7 +112,8 @@ public class Guerrier {
 	}
 	
 	public void volerPrivilege(Guerrier adversaire){
-		if (adversaire == null) throw new IllegalArgumentException("");
+		if (adversaire == null)
+			throw new IllegalArgumentException("Impossible de voler les priv. de null.");
 		for (int i = 0; i < this.privilege.length; i++){
 			if (adversaire.privilege[i])
 				this.privilege[i] = true ;
