@@ -24,6 +24,16 @@ public class Utilitaires {
 		} 
 		return choix ;
 	}
+	
+	/**
+	 * Affiche 40 lignes pour facilite la lisibilite
+	 * 
+	 */
+	public static void videEcran(){
+		for(int i=0; i<40; i++){
+			System.out.println("");
+		}
+	}
 }
 
 

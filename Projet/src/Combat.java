@@ -8,7 +8,7 @@ public class Combat {
 	
 	
 	public static void main(String args[]){
-		videEcran();
+		Utilitaires.videEcran();
 		
 		System.out.println("*********************************");
 		System.out.println("**          GLADIATOR          **");
@@ -17,7 +17,7 @@ public class Combat {
 		System.out.println("\nBienvenu dans Gladiator !");
 		
 		pause();
-		videEcran();
+		Utilitaires.videEcran();
 		
 		menuPrincipal();
 		
@@ -33,7 +33,7 @@ public class Combat {
 		System.out.print("\nFaites votre choix : ");
 		int choix = Utilitaires.choixEntierEntre(1, 3);
 		
-		videEcran();
+		Utilitaires.videEcran();
 		
 		switch (choix) {
 		case 1:
@@ -121,11 +121,11 @@ public class Combat {
 		listeEquipe[0] = equipe1;
 		listeEquipe[1] = equipe2;
 		
-		videEcran();
+		Utilitaires.videEcran();
 		
 		System.out.println("\nQue le combat commence !");
 		pause();
-		videEcran();
+		Utilitaires.videEcran();
 	}
 
 	public static Guerrier[] CreationListeGuerrier(){
@@ -229,13 +229,12 @@ public class Combat {
 	public static void combatGuerrier(){
 		Guerrier[] combattants = new Guerrier[2];
 		
-		int tour = 0;
-		
+		int tour = 0;	
 	
 		combattants[0] = choisirCombatant(0);
-		videEcran();
+		Utilitaires.videEcran();
 		combattants[1] = choisirCombatant(1);
-		videEcran();
+		Utilitaires.videEcran();
 		
 		while (!combatFini()){
 			System.out.println("\nTour de " + combattants[tour].getNom()+"\n");
@@ -274,7 +273,7 @@ public class Combat {
 			choix = Utilitaires.choixEntierEntre(0, listeEquipe[tour].getNbreGuerrier()-1);
 			if (!listeEquipe[tour].selectionner(choix).equals(combattant))
 				break;
-			System.out.println("Ce combattant est deja� au combat !");	
+			System.out.println("Ce combattant est deja au combat !");	
 		}
 		return listeEquipe[tour].selectionner(choix);
 	}
@@ -301,16 +300,16 @@ public class Combat {
 		switch (choix) {
 		case 1:
 			attaque(tour, combattants);
-			videEcran();
+			Utilitaires.videEcran();
 			break ;
 		case 2:
 			combattants[tour] = choisirCombatant(tour, combattants[tour]);
-			videEcran();
+			Utilitaires.videEcran();
 			break ;
 		default:
 			afficherEquipe(listeEquipe[tour]);
 			pause();
-			videEcran();
+			Utilitaires.videEcran();
 			choixAction(tour, combattants);
 			break ;
 		}
@@ -386,7 +385,7 @@ public class Combat {
 							   defenseur.getNom() + "\n");
 			
 			pause();
-			videEcran();
+			Utilitaires.videEcran();
 			
 			if (!combatFini())
 				combattants[(tour+1)%2] = choisirCombatant((tour+1)%2);			
@@ -394,21 +393,11 @@ public class Combat {
 				System.out.println("==== La victoire est pour L'equipe "
 						+ listeEquipe[tour].getNom() + " ====\n ==== Felicitations !====");
 				pause();
-				videEcran();
+				Utilitaires.videEcran();
 
 		}
 		else{
 			pause();
-		}
-	}
-	
-	/**
-	 * Affiche 40 lignes pour facilite la lisibilite
-	 * 
-	 */
-	public static void videEcran(){
-		for(int i=0; i<40; i++){
-			System.out.println("");
 		}
 	}
 	
