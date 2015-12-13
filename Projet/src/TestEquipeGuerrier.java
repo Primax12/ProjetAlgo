@@ -95,7 +95,6 @@ public class TestEquipeGuerrier {
 		}
 		
 		try{
-			//Ca bug encore, je sais pas pourquoi
 			System.out.println("\n=== TEST DU TABLEGUERRIERAVECPRIVILEGES ===\n");
 			EquipeGuerrier eg1 = new EquipeGuerrier("EquipeTest1", 2);
 			Guerrier g1 = new Guerrier("g1", 100);
@@ -129,71 +128,65 @@ public class TestEquipeGuerrier {
 			System.out.println(e.getMessage() + "\nTest Ko");
 		}
 		
-		
-		/*
-		Guerrier g1 = new Guerrier("g1", 100);
-		Guerrier g2 = new Guerrier("g2", 100);
-
-		Guerrier g3 = new Guerrier("g3", 100);
-		
-		g1.setNbrePV(20);
-		g2.setNbrePV(23);
-		
-		EquipeGuerrier e1 = new EquipeGuerrier("BernTeam");
-		e1.ajouterGuerrier(g1);
-		e1.ajouterGuerrier(g2);
-		e1.ajouterGuerrier(g3);
-		
-		//System.out.println(e1);
-		
-		Guerrier[] liste = e1.tableGuerrierSelonForce(1);
-		
-		for (int i = 0 ; i < liste.length; i++){
-			System.out.println(liste[i]);
+		try{
+			System.out.println("\n=== TEST DU TABLEGUERRIERSANSPRIVILEGE ===\n");
+			EquipeGuerrier eg1 = new EquipeGuerrier("EquipeTest1", 2);
+			Guerrier g1 = new Guerrier("g1", 100);
+			g1.donnerPrivilege(0);
+			g1.donnerPrivilege(4);
+			g1.donnerPrivilege(5);
+			Guerrier g2 = new Guerrier("g2", 100);
+			g2.donnerPrivilege(0);
+			g2.donnerPrivilege(5);
+			Guerrier g3 = new Guerrier("g3", 100);
+			g3.donnerPrivilege(4);
+			g3.donnerPrivilege(5);
+			
+			eg1.ajouterGuerrier(g1);
+			eg1.ajouterGuerrier(g2);
+			eg1.ajouterGuerrier(g3);
+			
+			int[] priv = new int[2];
+			priv[0] = 4;
+			priv[1] = 5;
+			
+			Guerrier[] verif1 = new Guerrier[1];
+			verif1[0] = g2;
+			Guerrier[] verif2 = eg1.tableGuerrierSansPrivileges(priv);
+			
+			if (verif1.equals(verif2)) System.out.println("\nTest Ko");
+			System.out.println("\n=== Test du tableGuerrierSansPrivileges Ok ===\n");
+		}
+		catch(IllegalArgumentException e){
+			System.out.println(e.getMessage() + "\nTest Ko");
 		}
 		
-		g1.donnerPrivilege(1);
-		g1.donnerPrivilege(2);
-		
-		g2.donnerPrivilege(1);
-		g2.donnerPrivilege(2);
-		g2.donnerPrivilege(3);
-		
-		g3.donnerPrivilege(0);
-		g3.donnerPrivilege(2);
-		g3.donnerPrivilege(3);
-
-		System.out.println("\n\n\n====================================\n\n\n");
-		int[] liste2 = {1,2};
-		Guerrier[] listeAvecPriv = e1.tableGuerrierAvecPrivileges(liste2);
-		
-		for (int i = 0 ; i < listeAvecPriv.length; i++){
-			System.out.println(listeAvecPriv[i]);
+		try{
+			System.out.println("\n=== TEST DU TABLEGUERRIERSELONFORCE ===\n");
+			EquipeGuerrier eg1 = new EquipeGuerrier("EquipeTest1", 2);
+			Guerrier g1 = new Guerrier("g1", 100);
+			Guerrier g2 = new Guerrier("g2", 100);
+			Guerrier g3 = new Guerrier("g3", 100);
+			g1.subirDegats(10);
+			g3.subirDegats(50);
+			
+			eg1.ajouterGuerrier(g1);
+			eg1.ajouterGuerrier(g2);
+			eg1.ajouterGuerrier(g3);
+			
+			Guerrier[] table = new Guerrier[2];
+			table[0] = g2;
+			table[1] = g1;
+			
+			Guerrier[] verif = eg1.tableGuerrierSelonForce(4);
+			
+			if (table.equals(verif)) System.out.println("\nTest Ko");
+			System.out.println("\n=== Test du tableGuerrierSelonForce Ok ===\n");
+		}
+		catch(IllegalArgumentException e){
+			System.out.println(e.getMessage() + "\nTest Ko");
 		}
 		
-		//g1.donnerPrivilege(1);
-		//g1.donnerPrivilege(4);
-		//int[] x = {1,4};
-		//int[] y = {1,3};
-		//int[] z = {0,2};
-		//System.out.println(g1.possedeAucun(x));
-		//System.out.println(g1.possedeAucun(y));
-		//System.out.println(g1.possedeAucun(z));
-		//System.out.println(g1.possede(1));
-		//System.out.println(g1.possede(3));
-	
-	
-		//System.out.println(g1.retirePrivilege(1));
-		/**	
-		 System.out.println(g1);
-	
 		
-		
-		System.out.println(g1.equals(g2));
-		
-		Guerrier g3 = new Guerrier("Bernard", 100, 50);
-		
-		System.out.println(g1.equals(g3));
-		 * */
 	}
 }
